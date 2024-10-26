@@ -1,0 +1,32 @@
+{% extends 'emprestimos/base.html' %}
+
+{% block title %}meus_emprestimos - Biblioteca{% endblock %}
+
+{% block content %}
+    <h2>Meus Empréstimos Atuais</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Livro</th>
+                <th>Data do Empréstimo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprestimo in emprestimos %}
+                <tr>
+                    <td>{{ emprestimo.livro.titulo }}</td>
+                    <td>{{ emprestimo.data_emprestimo|date:"d/m/Y H:i" }}</td>
+                    <td>
+                        <!-- Atualmente, apenas admins podem devolver -->
+                        <!-- Você pode adicionar funcionalidades para auto-devolução se desejar -->
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">Você não possui empréstimos no momento.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

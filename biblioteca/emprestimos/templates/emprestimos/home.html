@@ -1,0 +1,13 @@
+{% extends 'emprestimos/base.html' %}
+
+{% block title %}Home - Biblioteca{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Bem-vindo à Sala de Leitura</h1>
+        <p class="lead">Gerencie seus empréstimos de livros de forma fácil e rápida.</p>
+        <hr class="my-4">
+        <p>Explore nossos livros disponíveis e faça seus empréstimos.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'emprestimos:livro_list' %}" role="button">Ver Livros</a>
+    </div>
+{% endblock %}

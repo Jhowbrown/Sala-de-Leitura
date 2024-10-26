@@ -1,0 +1,20 @@
+{% extends 'emprestimos/base.html' %}
+
+{% block title %}Login - Sala de Leitura{% endblock %}
+
+{% block content %}
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+       <!--  {{ form.as_p }} -->
+        <div class="form-group">
+            <label for="id_username">Usuário:</label>
+            <input type="text" name="username" class="form-control" id="id_username" required>
+        </div>
+        <div class="form-group">
+            <label for="id_password">Senha:</label>
+            <input type="password" name="password" class="form-control" id="id_password" required>
+        </div>
+        <a class="btn btn-primary btn-lg" href="{% url 'emprestimos:home' %}" role="button">entrar</a>
+    </form>
+{% endblock %}

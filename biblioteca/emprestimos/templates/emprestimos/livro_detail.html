@@ -1,0 +1,23 @@
+{% extends 'emprestimos/base.html' %}
+
+{% block title %}{{ livro.titulo }} - Biblioteca{% endblock %}
+
+{% block content %}
+    <h2>{{ livro.titulo }}</h2>
+    <p><strong>Autor:</strong> {{ livro.autor }}</p>
+    <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
+    <p>
+        <strong>Status:</strong>
+        {% if livro.disponivel %}
+            <span class="badge badge-success">Disponível</span>
+        {% else %}
+            <span class="badge badge-secondary">Indisponível</span>
+        {% endif %}
+    </p>
+    {% if livro.disponivel and user.is_authenticated %}
+        <a href="{% url 'emprestimos:emprestar_livro' livro.id %}" class="btn btn-success">Emprestar este Livro</a>
+    {% elif not user.is_authenticated %}
+        <p>Faça <a href="{% url 'login' %}">login</a> para solicitar um empréstimo.</p>
+    {% endif %}
+    <a href="{% url 'emprestimos:livro_list' %}" class="btn btn-secondary">Voltar à Lista</a>
+{% endblock %}

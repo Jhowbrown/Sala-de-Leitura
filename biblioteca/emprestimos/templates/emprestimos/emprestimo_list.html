@@ -1,0 +1,30 @@
+{% extends 'emprestimos/base.html' %}
+
+{% block title %}Livros - Biblioteca{% endblock %}
+
+{% block content %}
+    <h2>Livros Disponíveis</h2>
+    <div class="row">
+        {% for livro in livros %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ livro.titulo }}</h5>
+                        <p class="card-text">Autor: {{ livro.autor }}</p>
+                        <p class="card-text">ISBN: {{ livro.isbn }}</p>
+                        <p class="card-text">
+                            {% if livro.disponivel %}
+                                <span class="badge badge-success">Disponível</span>
+                            {% else %}
+                                <span class="badge badge-secondary">Indisponível</span>
+                            {% endif %}
+                        </p>
+                        <a href="{% url 'emprestimos:livro_detail' livro.pk %}" class="btn btn-primary">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Não há livros disponíveis no momento.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
